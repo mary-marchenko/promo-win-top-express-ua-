@@ -1,0 +1,276 @@
+$white: #FBFCFD
+$gray: #D3D9EA
+$grayTitle: #BFBFBF
+$green-blue: #00CDCF
+$green-blue-hover: #09D6D8
+$blue: #3396D3
+$green-border: #163C52
+$green: #112D3F
+$green-line: #13354A
+$black: #090A18
+
+$font-exo2-bold: 'Exo2-Bold', sans-serif // 700
+$font-exo2-med: 'Exo2-Medium', sans-serif // 500
+$font-exo2-regular: 'Exo2-Regular', sans-serif // 400
+$font-display-bold: 'WinDisplay-NormalBold', sans-serif // 700
+$font-display-medium: 'WinDisplay-NormalMedium', sans-serif // 500
+$font-text-bold: 'WinText-Bold', sans-serif // 700
+
+.hide
+  display: none !important
+
+body
+  overscroll-behavior: none
+  -webkit-tap-highlight-color: transparent
+  background: $black
+  img
+    max-width: 100%
+    height: auto
+  & > *
+    font-family: inherit
+
+.allWin-page
+  overflow: hidden
+  -webkit-tap-highlight-color: transparent
+
+//test
+.menu-btn
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 20
+  width: fit-content
+  background: white
+  padding: 3px
+
+.menu-test
+  position: fixed
+  left: 0
+  top: 25px
+  z-index: 20
+  display: flex
+  gap: 2px
+  flex-direction: column
+  & > button
+    width: fit-content
+    background: white
+    color: black
+    padding: 2px
+    font-family: inherit
+    border-radius: 2px
+
+.allWin-page
+  .btn
+    font-family: $font-exo2-bold
+    font-size: 18px
+    line-height: 18px
+    background-color: $green-blue
+    color: $black
+    min-width: 190px
+    height: 50px
+    border-radius: 6px
+    max-width: fit-content
+    text-transform: uppercase
+    display: flex
+    align-items: center
+    justify-content: center
+    transition: background .7s ease-in-out
+    &:hover
+      cursor: pointer
+      background-color: $green-blue-hover
+  .container
+    max-width: 1366px
+    margin: auto
+    position: relative
+  .banner
+    display: block
+    position: relative
+    .container
+      position: relative
+      height: fit-content
+    &__wrapp
+      z-index: 2
+      position: absolute
+      left: 64px
+      top: 0
+      width: 95%
+      height: 100%
+      display: flex
+      flex-direction: column
+      justify-content: center
+      gap: 40px
+    &__title
+      gap: 18px
+      display: flex
+      flex-direction: column
+      &-top
+        font-family: $font-display-medium
+        font-size: 40px
+        line-height: 100%
+        text-transform: uppercase
+        color: $white
+      &-bottom
+        border-radius: 6px
+        height: 54px
+        padding: 18px 16px 13px
+        width: fit-content
+        display: flex
+        justify-content: center
+        align-items: center
+        background-color: $blue
+        font-family: $font-text-bold
+        font-size: 32px
+        line-height: 32px
+        text-transform: uppercase
+        color: $white
+    &__info
+      color: $grayTitle
+      font-size: 8px
+      font-family: $font-exo2-regular
+      right: 10px
+      top: 16px
+      position: absolute
+      //transform: rotate(-90deg) translateX(50%)
+      writing-mode: sideways-lr
+      text-orientation: mixed
+      //width: 100%
+      height: 90%
+      white-space: normal
+  .about
+    text-align: center
+    .container
+      padding: 0 131px
+    &__title
+      font-family: $font-exo2-bold
+      font-size: 24px
+      line-height: 24px
+      color: $white
+      text-transform: uppercase
+      text-align: left
+    &__list
+      margin-top: 87px
+      text-align: center
+      &-item
+        margin-bottom: 32px
+        font-family: $font-exo2-regular
+        color: $white
+        font-size: 18px
+        line-height: 18px
+        position: relative
+    &__txt
+      margin-top: 40px
+      font-family: $font-exo2-regular
+      font-size: 18px
+      line-height: 18px
+      color: $white
+      text-align: center
+
+  .tableResults
+    //padding: 80px 0 60px
+    &__wrap
+      margin: auto
+      max-width: 768px
+      display: flex
+      flex-direction: column
+      align-items: center
+    &__title
+      font-family: $font-display-bold
+      font-size: 40px
+      color: $white
+      text-transform: uppercase
+    &__head
+      font-family: $font-exo2-regular
+      font-size: 23px
+      color: $grayTitle
+      background: $green
+      text-transform: uppercase
+      display: flex
+      align-items: center
+      width: 100%
+      &-col
+        color: $grayTitle
+        font-size: 14px
+        font-family: $font-exo2-bold
+        width: 25%
+        padding: 19px 20px 17px 30px
+        &:nth-child(1)
+          padding-left: 24px
+        &:nth-child(2)
+          padding-left: 27px
+    &__row
+      display: flex
+      background-color: $green
+      border: 0 solid $green-line
+      &:last-child
+        margin-bottom: 0
+    &__body
+      width: 100%
+      &-col
+        color: $gray
+        font-size: 14px
+        font-family: $font-exo2-bold
+        width: 25%
+        margin-right: 8px
+        display: flex
+        align-items: center
+        &:last-child
+          margin-right: 0
+
+  .conditionsDrop
+    padding: 0 0 50px
+    &__drop
+      max-width: 767px
+      margin: auto
+      .dropdown
+        outline: none!important
+        cursor: pointer
+        &[open]
+          summary
+            &:before
+              transform: rotate(-45deg)
+            &:after
+              transform: rotate(45deg)
+        summary::marker,
+        summary::-webkit-details-marker
+          display: none
+        > summary
+          list-style: none
+        summary
+          font-family: $font-exo2-bold
+          font-size: 18px
+          color: $gray
+          text-transform: uppercase
+          outline: none!important
+          position: relative
+          padding: 25px 85px 24px 49px
+          ::marker
+            display: none
+          &:before,
+          &:after
+            content: ''
+            background: $blue
+            width: 4px
+            height: 18px
+            display: block
+            position: absolute
+            transform: rotate(45deg)
+          &:before
+            top: 33px
+            right: 53px
+          &:after
+            transform: rotate(-45deg)
+            top: 33px
+            right: 64px
+        .drop-txt
+          font-size: 16px
+          line-height: 16px
+          color: $gray
+          padding: 60px 120px
+          li
+            font-family: $font-exo2-regular
+            margin-bottom: 16px
+            &:last-child
+              margin-bottom: 0
+
+  .win-title-style
+    padding-top: 7px

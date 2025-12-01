@@ -1,0 +1,187 @@
+$blue: #000055
+$magenta: #ff267e
+$green: #05C489
+$green-hover: #05b37c
+$white: #ffffff
+
+$font-suisse-med: 'SuisseIntl-Medium', sans-serif
+$font-suisse-semb: 'SuisseIntl-SemiBold', sans-serif
+$font-wulkan: 'WulkanDisplay-SemiBoldItalic', sans-serif
+
+body
+  background: $blue
+
+.hide
+  display: none !important
+
+.fav-page
+  width: 100%
+  overflow: hidden
+
+.normal
+  font-family: $font-suisse-med
+
+.italic
+  font-family: $font-wulkan
+
+.date
+  margin-top: 37px
+  font-size: 29px
+  color: $white
+  letter-spacing: 0.06em
+  border-radius: 5px
+  border: 2px solid $white
+  display: flex
+  flex-direction: column
+  text-align: center
+  .day
+    background: $magenta
+    font-family: $font-suisse-med
+    padding: 8px 18px 1px
+    border-top-left-radius: 5px
+    border-top-right-radius: 5px
+    border-bottom: 2px solid $white
+  .time
+    background: $blue
+    font-family: $font-suisse-med
+    padding: 8px 18px 1px
+    border-bottom-left-radius: 5px
+    border-bottom-right-radius: 5px
+
+.vatsko
+  display: flex
+  &__left
+<<<<<<< HEAD
+    width: 59%
+=======
+    width: 100%
+>>>>>>> d9d682c0bf7dd9baa6814040640652b70d3b5b5a
+    background: url("/static/media/themes/vatskopage/new-design/img/bg.jpeg") no-repeat 50% 0/cover
+    position: relative
+    display: flex
+    flex-direction: column
+    &-title
+      display: flex
+      flex-direction: column
+      align-items: flex-start
+      font-size: 93px
+      color: $blue
+      letter-spacing: 0.02em
+      text-transform: uppercase
+      .line-1,
+      .line-2
+        height: 135px
+        background: $magenta
+        display: flex
+        align-items: center
+        padding: 12px 33px 0
+        .italic
+          margin-right: 23px
+      .line-2
+        margin-top: -16px
+    &-date
+      display: none
+    &-img
+      width: 840px
+      margin-bottom: -4px
+      align-self: flex-end
+      margin-top: -10px
+      .tabl,
+      .mob
+        display: none
+  &__right
+    max-width: 790px
+    min-width: 790px
+    width: 790px
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    background: $blue
+    padding: 45px 68px 71px 64px
+    &-teams
+      font-size: 90px
+      line-height: 120px
+      color: $magenta
+      letter-spacing: 0.03em
+      text-transform: uppercase
+      position: relative
+<<<<<<< HEAD
+      .label
+        width: 66px
+        height: 56px
+        border: 1px solid $white
+        border-radius: 33px / 28px
+        display: flex
+        justify-content: center
+        align-items: center
+        position: absolute
+        top: 36%
+        left: 137px
+        z-index: 1
+        background: $blue
+        &:before
+          content: ''
+          background: url("/static/media/themes/vatskopage/new-design/img/vs.svg") no-repeat 0 0 / contain
+          width: 42px
+          height: 26px
+=======
+>>>>>>> d9d682c0bf7dd9baa6814040640652b70d3b5b5a
+      .team-2
+        margin-top: -20px
+        display: flex
+        align-items: center
+        span
+          order: 2
+        .label
+          width: 66px
+          height: 56px
+          border: 1px solid $white
+          border-radius: 33px / 28px
+          display: flex
+          justify-content: center
+          align-items: center
+          z-index: 1
+          background: $blue
+          order: 1
+          margin-top: -6px
+          margin-right: 18px
+          &:before
+            content: ''
+            background: url("/static/media/themes/vatskopage/new-design/img/vs.svg") no-repeat 0 0 / contain
+            width: 42px
+            height: 26px
+    &-coeff
+      margin-top: auto
+      display: flex
+      justify-content: space-between
+      align-items: center
+      width: 100%
+      &-title
+        font-size: 44px
+        line-height: 50px
+        color: $white
+        font-family: $font-suisse-med
+        width: 300px
+        letter-spacing: 0.02em
+      &-count
+        font-size: 44px
+        color: $white
+        font-family: $font-suisse-med
+        border: 1px solid #EDEDED
+        padding: 32px 23px 22px
+    &-btn
+      display: block
+      font-family: $font-suisse-semb
+      font-size: 30px
+      letter-spacing: 0.07em
+      background: $green
+      text-transform: uppercase
+      width: 100%
+      text-align: center
+      padding: 36px 0 33px
+      color: $blue
+      transition: background .3s linear
+      border-radius: 4px
+      margin-top: 70px
+      &:hover
+        background: $green-hover
