@@ -9,8 +9,8 @@ $green: #112D3F
 $green-line: #13354A
 $black: #090A18
 
+$font-exo2-semiBold: 'Exo2-SemiBold', sans-serif // 600
 $font-exo2-bold: 'Exo2-Bold', sans-serif // 700
-$font-exo2-med: 'Exo2-Medium', sans-serif // 500
 $font-exo2-regular: 'Exo2-Regular', sans-serif // 400
 $font-display-bold: 'WinDisplay-NormalBold', sans-serif // 700
 $font-display-medium: 'WinDisplay-NormalMedium', sans-serif // 500
@@ -61,7 +61,7 @@ body
 
 .allWin-page
   .btn
-    font-family: $font-exo2-bold
+    font-family: $font-exo2-semiBold
     font-size: 18px
     line-height: 18px
     background-color: $green-blue
@@ -75,17 +75,19 @@ body
     align-items: center
     justify-content: center
     transition: background .7s ease-in-out
+    animation: pulseScale 3s ease-in-out infinite
     &:hover
       cursor: pointer
       background-color: $green-blue-hover
   .container
-    max-width: 1366px
+    max-width: 768px
     margin: auto
     position: relative
   .banner
     display: block
     position: relative
     .container
+      max-width: 1366px
       position: relative
       height: fit-content
     &__wrapp
@@ -123,53 +125,71 @@ body
         line-height: 32px
         text-transform: uppercase
         color: $white
+        position: relative
+        span
+          font-family: $font-exo2-bold
+          font-size: 17px
+          position: absolute
+          top: 5px
+          right: 8px
     &__info
       color: $grayTitle
-      font-size: 8px
       font-family: $font-exo2-regular
-      right: 10px
-      top: 16px
       position: absolute
-      //transform: rotate(-90deg) translateX(50%)
-      writing-mode: sideways-lr
-      text-orientation: mixed
+      right: 50px
+      top: 50%
+      //transform: translateY(-50%) rotate(-90deg)
+      transform-origin: top right
+      //font-size: 0.55vw
+      font-size: 8px
+      line-height: 11px
+      transform: rotate(-90deg) translateX(50%)
+      width: 306px
+      //writing-mode: sideways-lr
+      //text-orientation: mixed
       //width: 100%
-      height: 90%
-      white-space: normal
+      height: 41px
   .about
+    margin-top: 32px
     text-align: center
     .container
-      padding: 0 131px
+      display: flex
+      flex-direction: column
+      align-items: center
+      gap: 32px
     &__title
       font-family: $font-exo2-bold
       font-size: 24px
-      line-height: 24px
+      line-height: 28px
       color: $white
-      text-transform: uppercase
-      text-align: left
     &__list
-      margin-top: 87px
       text-align: center
       &-item
-        margin-bottom: 32px
+        margin-bottom: 15px
         font-family: $font-exo2-regular
         color: $white
         font-size: 18px
         line-height: 18px
         position: relative
+        &:last-child
+          margin-bottom: 0
     &__txt
-      margin-top: 40px
       font-family: $font-exo2-regular
       font-size: 18px
-      line-height: 18px
+      line-height: 20px
       color: $white
       text-align: center
 
-  .tableResults
-    //padding: 80px 0 60px
+  .table
+    margin-top: 50px
+    .container
+      display: flex
+      flex-direction: column
+      align-items: center
     &__wrap
       margin: auto
       max-width: 768px
+      width: 100%
       display: flex
       flex-direction: column
       align-items: center
@@ -178,45 +198,51 @@ body
       font-size: 40px
       color: $white
       text-transform: uppercase
+      margin-bottom: 32px
     &__head
-      font-family: $font-exo2-regular
-      font-size: 23px
       color: $grayTitle
-      background: $green
-      text-transform: uppercase
+      background: $green-line
       display: flex
       align-items: center
+      justify-content: space-between
       width: 100%
+      border-bottom: 1px solid $green-border
       &-col
+        display: flex
+        justify-content: center
+        align-items: center
         color: $grayTitle
-        font-size: 14px
-        font-family: $font-exo2-bold
-        width: 25%
-        padding: 19px 20px 17px 30px
-        &:nth-child(1)
-          padding-left: 24px
-        &:nth-child(2)
-          padding-left: 27px
+        text-align: center
+        font-size: 12px
+        font-family: $font-exo2-regular
+        width: 100px
+        height: 35px
     &__row
+      width: 100%
       display: flex
+      justify-content: space-between
+      align-items: center
       background-color: $green
-      border: 0 solid $green-line
-      &:last-child
-        margin-bottom: 0
+      border-bottom: 1px solid $green-border
     &__body
       width: 100%
+      background-color: $green
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: space-between
       &-col
         color: $gray
         font-size: 14px
         font-family: $font-exo2-bold
-        width: 25%
-        margin-right: 8px
+        width: 100px
+        justify-content: center
         display: flex
         align-items: center
-        &:last-child
-          margin-right: 0
+        height: 51px
 
   .conditionsDrop
+    margin-top: 40px
     padding: 0 0 50px
     &__drop
       max-width: 767px
@@ -227,50 +253,87 @@ body
         &[open]
           summary
             &:before
-              transform: rotate(-45deg)
-            &:after
-              transform: rotate(45deg)
+              transform: rotate(180deg)
         summary::marker,
         summary::-webkit-details-marker
           display: none
         > summary
           list-style: none
         summary
+          display: flex
+          justify-content: space-between
+          align-items: center
           font-family: $font-exo2-bold
           font-size: 18px
+          padding-bottom: 12px
           color: $gray
-          text-transform: uppercase
           outline: none!important
           position: relative
-          padding: 25px 85px 24px 49px
+          border-bottom: 1px solid $green-line
           ::marker
             display: none
-          &:before,
-          &:after
-            content: ''
-            background: $blue
-            width: 4px
-            height: 18px
+          &::before
+            content: ""
             display: block
-            position: absolute
-            transform: rotate(45deg)
-          &:before
-            top: 33px
-            right: 53px
-          &:after
-            transform: rotate(-45deg)
-            top: 33px
-            right: 64px
+            min-width: 12px
+            height: 12px
+            background: url("../img/arrow-drop.png") no-repeat 0 0/contain
+            order: 2
         .drop-txt
           font-size: 16px
-          line-height: 16px
+          line-height: 18px
           color: $gray
-          padding: 60px 120px
-          li
-            font-family: $font-exo2-regular
+          padding: 30px 0
+          font-family: $font-exo2-regular
+          li, p
+            font-family: inherit
             margin-bottom: 16px
             &:last-child
               margin-bottom: 0
 
-  .win-title-style
-    padding-top: 7px
+@keyframes pulseScale
+  0%
+    transform: scale(1)
+  50%
+    transform: scale(1.1)
+  100%
+    transform: scale(1)
+
+//content styles
+.drop
+  .magenta
+    font-family: inherit
+    color: $white
+.retreat1
+  padding-left: 20px
+  strong
+    font-family: $font-exo2-bold
+    color: $white
+  p
+    &:not(:last-child)
+      padding-bottom: 15px
+
+.retreat2
+  padding-left: 40px
+  strong
+    font-family: $font-exo2-bold
+    color: $white
+
+.circle
+  padding-left: 20px
+  &:before
+    content: ''
+    width: 5px
+    height: 5px
+    background: $white
+    border-radius: 50%
+    display: inline-block
+    margin: 0 8px 3px 0
+
+@media screen and (max-width: 600px)
+  .circle
+    padding-left: 15px
+  .retreat1
+    padding-left: 15px
+  .retreat2
+    padding-left: 30px
