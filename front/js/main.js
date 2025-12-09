@@ -207,8 +207,8 @@
         title.classList.add('win-title-style');
     }
 
-    // loadTranslations()
-    //     .then(InitPage);
+    loadTranslations()
+        .then(InitPage);
 
     // TEST
     document.addEventListener("DOMContentLoaded", () => {
