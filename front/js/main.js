@@ -1,19 +1,18 @@
 (function () {
-    // const apiURL = 'https://fav-prom.com/api_express_hr';
-    const apiURL = 'https://fav-prom.com/api_express_ua';
-    // const apiURL = 'https://fav-prom.com/api_express_ro';
+    const apiURL = 'https://allwin-prom.pp.ua/api_express_allwin';
 
     const resultsTableList = document.querySelector('.tableResults__body');
 
     let users;
 
-    const checkLink = document.querySelector('#checkLink'),
+    const mainPage = document.querySelector(".allWin-page"),
         ukLeng = document.querySelector('#ukLeng'),
         enLeng = document.querySelector('#enLeng'),
         hrLeng = document.querySelector('#hrLeng'),
         roLeng = document.querySelector('#roLeng');
 
-    let locale = 'uk';
+    // let locale = 'uk';
+    let locale = sessionStorage.getItem("locale") || "uk"
 
     if (ukLeng) locale = 'uk';
     if (hrLeng) locale = 'hr';
@@ -21,6 +20,7 @@
     if (enLeng) locale = 'en';
 
     let i18nData = {};
+    const translateState = true;
 
     window.userId = null;
 
@@ -39,14 +39,14 @@
 
                 reportError(err);
 
-                document.querySelector('.fav-page').style.display = 'none';
-                if (window.location.href.startsWith("https://www.favbet.hr/")) {
-                    window.location.href = '/promocije/promocija/stub/';
-                } else {
-                    window.location.href = '/promos/promo/stub/';
-                }
-
-                return Promise.reject(err);
+                // document.querySelector('.allWin-page').style.display = 'none';
+                // if (window.location.href.startsWith("https://www.favbet.hr/")) {
+                //     window.location.href = '/promocije/promocija/stub/';
+                // } else {
+                //     window.location.href = '/promos/promo/stub/';
+                // }
+                //
+                // return Promise.reject(err);
             });
     }
 
@@ -89,40 +89,26 @@
     function translate() {
         const elems = document.querySelectorAll('[data-translate]')
         if (elems && elems.length) {
-            elems.forEach(elem => {
-                const key = elem.getAttribute('data-translate');
-                elem.innerHTML = translateKey(key);
-                elem.removeAttribute('data-translate');
-            })
 
-            let host;
-            if (window && window.location) {
-                host = window.location.host + '';
-            }
-
-            if (window && window.location && host.indexOf('favorit') > -1) {
-                document.querySelectorAll('.host-ref').forEach(el => {
-                    el.innerHTML = 'favorit.com.ua';
-
-                    const a = el.closest('a');
-                    if (a && a.href.indexOf('favbet') > -1) {
-                        const href = a.href;
-                        const afterDomain = href.split('favbet')[1].split('/')[1];
-
-                        a.setAttribute('href', 'https://' + host + (afterDomain ? ('/' + afterDomain) : ''));
+            if(translateState){
+                elems.forEach(elem => {
+                    const key = elem.getAttribute('data-translate');
+                    elem.innerHTML = i18nData[key] || '*----NEED TO BE TRANSLATED----*   key:  ' + key;
+                    if (i18nData[key]) {
+                        elem.removeAttribute('data-translate');
                     }
-
-
                 })
-            }
-            if (locale === 'en') {
-                mainPage.classList.add('en');
+            }else{
+                console.log("translation works!")
             }
         }
-
-
-
+        if (locale === 'en') {
+            mainPage.classList.add('en');
+        }
         refreshLocalizedClass();
+
+
+
     }
 
     function translateKey(key) {
@@ -136,7 +122,7 @@
         if (!element) {
             return;
         }
-        for (const lang of ['hr','en']) {
+        for (const lang of ['uk','en']) {
             element.classList.remove(baseCssClass + lang);
         }
         element.classList.add(baseCssClass + locale);
@@ -161,16 +147,7 @@
         }).catch(console.warn);
     }
 
-    // function translate() {
-    //     const elems = document.querySelectorAll('[data-translate]')
-    //     if (elems && elems.length) {
-    //         elems.forEach(elem => {
-    //             const key = elem.getAttribute('data-translate');
-    //             elem.innerHTML = i18nData[key] || '*----NEED TO BE TRANSLATED----*   key:  ' + key;
-    //             elem.removeAttribute('data-translate');
-    //         })
-    //     }
-    // }
+
 
     function getData () {
         return Promise.all([
@@ -186,7 +163,7 @@
             renderUsers(users);
         })
 
-        translate();
+        // translate();
     }
 
     // InitPage();
@@ -232,6 +209,25 @@
 
     // loadTranslations()
     //     .then(InitPage);
+
+    // TEST
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector(".menu-btn")?.addEventListener("click", () => {
+            document.querySelector(".menu-test")?.classList.toggle("hide");
+        });
+    });
+
+    const lngBtn = document.querySelector(".lng-btn")
+
+    lngBtn.addEventListener("click", () => {
+        if (sessionStorage.getItem("locale")) {
+            sessionStorage.removeItem("locale");
+        } else {
+            sessionStorage.setItem("locale", "en");
+        }
+        window.location.reload();
+    });
+
 })();
 
 
