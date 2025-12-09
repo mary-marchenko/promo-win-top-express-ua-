@@ -111,13 +111,6 @@
 
     }
 
-    function translateKey(key) {
-        if (!key) {
-            return;
-        }
-        return i18nData[key] || '*----NEED TO BE TRANSLATED----*   key:  ' + key;
-    }
-
     function refreshLocalizedClass(element, baseCssClass) {
         if (!element) {
             return;
@@ -171,30 +164,30 @@
     const REQUIRED_USERS_AMOUNT = 7;
 
     const renderUsers = (users) => {
-        const finalBoardWrapper = document.querySelector('.tableResults__body');
+        const finalBoardWrapper = document.querySelector('.table__body');
         finalBoardWrapper.innerHTML = '';
 
         if (users && users.length) {
             users.forEach(user => {
                 let userRow = document.createElement('div');
-                userRow.classList.add('tableResults__row');
+                userRow.classList.add('table__row');
                 userRow.innerHTML = `
-                            <div class="tableResults__body-col">${new Date(user.date * 1000).toLocaleString().split(",")[0]}</div>
-                            <div class="tableResults__body-col">${user.userid}</div>
-                            <div class="tableResults__body-col">${user.points}</div>
-                            <div class="tableResults__body-col">${user.bonus}</div>
+                            <div class="table__body-col">${new Date(user.date * 1000).toLocaleString().split(",")[0]}</div>
+                            <div class="table__body-col">${user.userid}</div>
+                            <div class="table__body-col">${user.points}</div>
+                            <div class="table__body-col">${user.bonus}</div>
             `
                 finalBoardWrapper.append(userRow);
             })
         } else {
             for (let i = 0; i < 7; i++) {
                 let userRow = document.createElement('div');
-                userRow.classList.add('tableResults__row');
+                userRow.classList.add('table__row');
                 userRow.innerHTML = `
-                <div class="tableResults__body-col">*******</div>
-                <div class="tableResults__body-col">*******</div>
-                <div class="tableResults__body-col">*******</div>
-                <div class="tableResults__body-col">*******</div>
+                <div class="table__body-col">*******</div>
+                <div class="table__body-col">*******</div>
+                <div class="table__body-col">*******</div>
+                <div class="table__body-col">*******</div>
             `
                 finalBoardWrapper.append(userRow);
             }
