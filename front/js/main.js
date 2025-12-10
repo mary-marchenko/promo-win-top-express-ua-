@@ -1,7 +1,7 @@
 (function () {
     const apiURL = 'https://allwin-prom.pp.ua/api_express_allwin';
 
-    const resultsTableList = document.querySelector('.tableResults__body');
+    const resultsTableList = document.querySelector('.table__body');
 
     let users;
 
@@ -11,12 +11,12 @@
         hrLeng = document.querySelector('#hrLeng'),
         roLeng = document.querySelector('#roLeng');
 
-    // let locale = 'uk';
-    let locale = sessionStorage.getItem("locale") || "uk"
+    let locale = 'uk';
+    // let locale = sessionStorage.getItem("locale") || "uk"
 
     if (ukLeng) locale = 'uk';
-    if (hrLeng) locale = 'hr';
-    if (roLeng) locale = 'ro';
+    // if (hrLeng) locale = 'hr';
+    // if (roLeng) locale = 'ro';
     if (enLeng) locale = 'en';
 
     let i18nData = {};
@@ -45,29 +45,10 @@
                 // } else {
                 //     window.location.href = '/promos/promo/stub/';
                 // }
-                //
-                // return Promise.reject(err);
+
+                return Promise.reject(err);
             });
     }
-
-
-    // request(`/new-translates/${locale}`)
-    //     .then(json => {
-    //         i18nData = json;
-    //         translate();
-    //         var mutationObserver = new MutationObserver(function (mutations) {
-    //             const shouldSkip = mutations.every(mutation => {
-    //                 return mutation.target.closest('.game-container') || mutation.target.closest('.table');
-    //             });
-    //             if (shouldSkip) return;
-    //
-    //             translate();
-    //         });
-    //         mutationObserver.observe(document.getElementById("crazy-promo"), {
-    //             childList: true,
-    //             subtree: true
-    //         });
-    //     });
 
     function loadTranslations() {
         return request(`/translates/${locale}`)
@@ -131,13 +112,13 @@
             stack: err?.stack || ''
         };
 
-        fetch('https://fav-prom.com/api-cms/reports/add', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(reportData)
-        }).catch(console.warn);
+        // fetch('https://fav-prom.com/api-cms/reports/add', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(reportData)
+        // }).catch(console.warn);
     }
 
 
@@ -155,11 +136,7 @@
             users = users.sort((a,b) => (a.date < b.date) ? 1 : ((b.date < a.date) ? -1 : 0));
             renderUsers(users);
         })
-
-        // translate();
     }
-
-    // InitPage();
 
     const REQUIRED_USERS_AMOUNT = 7;
 
@@ -194,32 +171,8 @@
         }
     }
 
-    const title = document.querySelector('.banner__title .normal')
-
-    if (navigator.platform.includes('Win32')) {
-        title.classList.add('win-title-style');
-    }
-
     loadTranslations()
         .then(InitPage);
-
-    // TEST
-    document.addEventListener("DOMContentLoaded", () => {
-        document.querySelector(".menu-btn")?.addEventListener("click", () => {
-            document.querySelector(".menu-test")?.classList.toggle("hide");
-        });
-    });
-
-    const lngBtn = document.querySelector(".lng-btn")
-
-    lngBtn.addEventListener("click", () => {
-        if (sessionStorage.getItem("locale")) {
-            sessionStorage.removeItem("locale");
-        } else {
-            sessionStorage.setItem("locale", "en");
-        }
-        window.location.reload();
-    });
 
 })();
 
