@@ -7,16 +7,12 @@
 
     const mainPage = document.querySelector(".allWin-page"),
         ukLeng = document.querySelector('#ukLeng'),
-        enLeng = document.querySelector('#enLeng'),
-        hrLeng = document.querySelector('#hrLeng'),
-        roLeng = document.querySelector('#roLeng');
+        enLeng = document.querySelector('#enLeng');
+
 
     let locale = 'uk';
-    // let locale = sessionStorage.getItem("locale") || "uk"
 
     if (ukLeng) locale = 'uk';
-    // if (hrLeng) locale = 'hr';
-    // if (roLeng) locale = 'ro';
     if (enLeng) locale = 'en';
 
     let i18nData = {};
@@ -24,7 +20,6 @@
 
     window.userId = null;
 
-    // var today = new Date().toISOString();
 
     const request = function (link, extraOptions) {
         return fetch(apiURL + link, {
@@ -36,15 +31,6 @@
         }).then(res => res.json())
             .catch(err => {
                 console.error('API request failed:', err);
-
-                reportError(err);
-
-                // document.querySelector('.allWin-page').style.display = 'none';
-                // if (window.location.href.startsWith("https://www.favbet.hr/")) {
-                //     window.location.href = '/promocije/promocija/stub/';
-                // } else {
-                //     window.location.href = '/promos/promo/stub/';
-                // }
 
                 return Promise.reject(err);
             });
@@ -111,14 +97,6 @@
             type: err?.name || 'UnknownError',
             stack: err?.stack || ''
         };
-
-        // fetch('https://fav-prom.com/api-cms/reports/add', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(reportData)
-        // }).catch(console.warn);
     }
 
 
@@ -137,8 +115,6 @@
             renderUsers(users);
         })
     }
-
-    const REQUIRED_USERS_AMOUNT = 7;
 
     const renderUsers = (users) => {
         const finalBoardWrapper = document.querySelector('.table__body');
